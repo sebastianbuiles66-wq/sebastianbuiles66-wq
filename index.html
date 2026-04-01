@@ -171,15 +171,11 @@
 
         .cats-bg span {
             position: absolute;
-            font-size: 30px;
+            font-size: 60px;
             animation: floatCats 10s linear infinite;
             cursor: pointer;
             transition: transform 0.2s, filter 0.2s;
         }
-
-        .cats-bg span:nth-child(3) { left: 50%; animation-duration: 10s; }
-        .cats-bg span:nth-child(2) { left: 30%; animation-duration: 12s; }
-        .cats-bg span:nth-child(5) { left: 90%; animation-duration: 9s; }
 
         @keyframes floatCats {
             0% { top: 100%; opacity: 0; }
@@ -268,10 +264,19 @@
     const cats = document.querySelectorAll('.cats-bg span');
 
     cats.forEach(cat => {
+        // 🎲 POSICIÓN RANDOM
+        cat.style.left = Math.random() * 100 + "%";
+        cat.style.top = (Math.random() * 80 + 10) + "%";
+
+        // 🎲 VELOCIDAD RANDOM
+        cat.style.animationDuration = (8 + Math.random() * 6) + "s";
+
+        // 💥 CLICK
         cat.addEventListener('click', () => {
-            cat.style.opacity = '0';
-            cat.style.transform = 'scale(2)';
-            
+            cat.style.transition = "0.3s";
+            cat.style.transform = "scale(2)";
+            cat.style.opacity = "0";
+
             setTimeout(() => {
                 cat.remove();
             }, 300);
