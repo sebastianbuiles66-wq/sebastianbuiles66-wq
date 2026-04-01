@@ -1,58 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Portafolio - Sebastián</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0f172a;
+            color: white;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-weight: normal;
+            color: #38bdf8;
+        }
+
+        .skills {
+            margin: 20px 0;
+        }
+
+        .skills span {
+            background-color: #1e293b;
+            padding: 8px 12px;
+            margin: 5px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .quote {
+            margin-top: 20px;
+            font-style: italic;
+            color: #94a3b8;
+        }
+
+        .projects {
+            max-width: 600px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .project {
+            background-color: #1e293b;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .project p {
+            color: #94a3b8;
+        }
+
+        .project a {
+            color: #38bdf8;
+            text-decoration: none;
+        }
+
+        .project-img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
 <body>
 
-    <div class="container">
-        <h1>Sebastian Builes Ortiz</h1>
+    <div class="main">
 
-        <h2>Unity Game Developer creando experiencias interactivas</h2>
+        <div class="container">
+            <h1>¡Hola! 👋 Soy Sebastian Builes</h1>
 
-        <div class="skills">
-            <span>Unity</span>
-            <span>C#</span>
-            <span>Gameplay Programming</span>
-            <span>Git/GitHub</span>
+            <h2>Unity Game Developer creando experiencias interactivas</h2>
+
+            <div class="skills">
+                <span>Unity</span>
+                <span>C#</span>
+                <span>Gameplay Programming</span>
+                <span>Git/GitHub</span>
+            </div>
+
+            <p class="quote">
+                "Transformo ideas en mecánicas de juego."
+            </p>
         </div>
 
-        <p class="quote">
-            "Transformo ideas en mecánicas de juego."
-        </p>
-    </div> <!-- 🔥 CIERRA AQUÍ -->
+        <div class="projects">
+            <h2>🚀 Proyectos</h2>
 
+            <div class="project">
+                <img src="taxi.png" class="project-img">
 
+                <h3>🚕 Taxi Oscuro</h3>
 
-    <!-- 🔥 PROYECTOS AHORA VAN AFUERA -->
-    <div class="projects">
-        <h2>🚀 Proyectos</h2>
+                <p>Juego donde transportas pasajeros mientras escapas de una criatura en la oscuridad.</p>
 
-        <!-- PROYECTO 1 -->
-        <div class="project">
-            <img src="taxi.png" alt="Juego Taxi" class="project-img">
+                <p><strong>Rol:</strong> Programador de gameplay</p>
 
-            <h3>🚕 Taxi Oscuro</h3>
+                <a href="https://kairosnova.itch.io/taxi-night-ride" target="_blank">Jugar en itch.io</a>
+            </div>
 
-            <p>
-                Juego donde transportas pasajeros mientras escapas de una criatura en la oscuridad.
-            </p>
+            <div class="project">
+                <img src="Hidden.jpg" class="project-img">
 
-            <p><strong>Rol:</strong> Programador de gameplay (movimiento, sistema de pasajeros, luces, IA del monstruo)</p>
+                <h3>⚽ Prototipo de Fútbol</h3>
 
-            <a href="https://kairosnova.itch.io/taxi-night-ride" target="_blank">Jugar en itch.io</a>
-        </div>
+                <p>Sistema de control de jugador y balón con físicas en Unity.</p>
 
-        <!-- PROYECTO 2 -->
-        <div class="project">
-            <img src="Hidden.jpg" alt="Juego Futbol" class="project-img">
+                <p><strong>Rol:</strong> Programador de movimiento</p>
 
-            <h3>⚽ Prototipo de Fútbol</h3>
+                <a href="https://andreagranados.itch.io/hidden-legacy" target="_blank">Jugar en itch.io</a>
+            </div>
 
-            <p>
-                Sistema de control de jugador y balón con físicas en Unity.
-            </p>
-
-            <p><strong>Rol:</strong> Programador de movimiento y control del balón</p>
-
-            <a href="https://andreagranados.itch.io/hidden-legacy" target="_blank">Jugar en itch.io</a>
         </div>
 
     </div>
 
 </body>
+</html>
