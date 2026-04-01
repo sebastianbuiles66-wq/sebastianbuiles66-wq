@@ -177,10 +177,8 @@
             transition: transform 0.2s, filter 0.2s;
         }
 
-        .cats-bg span:nth-child(1) { left: 10%; animation-duration: 8s; }
-        .cats-bg span:nth-child(2) { left: 30%; animation-duration: 12s; }
         .cats-bg span:nth-child(3) { left: 50%; animation-duration: 10s; }
-        .cats-bg span:nth-child(4) { left: 70%; animation-duration: 14s; }
+        .cats-bg span:nth-child(2) { left: 30%; animation-duration: 12s; }
         .cats-bg span:nth-child(5) { left: 90%; animation-duration: 9s; }
 
         @keyframes floatCats {
@@ -206,8 +204,6 @@
 
     <!-- 🐱 GATOS -->
     <div class="cats-bg">
-        <span>🐱</span>
-        <span>🐱</span>
         <span>🐱</span>
         <span>🐱</span>
         <span>🐱</span>
@@ -268,6 +264,19 @@
         </div>
 
     </div>
+<script>
+    const cats = document.querySelectorAll('.cats-bg span');
 
+    cats.forEach(cat => {
+        cat.addEventListener('click', () => {
+            cat.style.opacity = '0';
+            cat.style.transform = 'scale(2)';
+            
+            setTimeout(() => {
+                cat.remove();
+            }, 300);
+        });
+    });
+</script>
 </body>
 </html>
