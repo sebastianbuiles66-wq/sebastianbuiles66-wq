@@ -200,9 +200,7 @@
 
     <!-- 🐱 GATOS -->
     <div class="cats-bg">
-        <span>🐱</span>
-        <span>🐱</span>
-        <span>🐱</span>
+
     </div>
 
     <div class="main">
@@ -261,15 +259,23 @@
 
     </div>
 <script>
-    const cats = document.querySelectorAll('.cats-bg span');
+    const container = document.querySelector('.cats-bg');
 
-    cats.forEach(cat => {
+    function createCat() {
+        const cat = document.createElement('span');
+        cat.textContent = "🐱";
+
         // 🎲 POSICIÓN RANDOM
+        cat.style.position = "absolute";
         cat.style.left = Math.random() * 100 + "%";
-        cat.style.top = (Math.random() * 80 + 10) + "%";
+        cat.style.top = "100%"; // empieza abajo
 
-        // 🎲 VELOCIDAD RANDOM
-        cat.style.animationDuration = (8 + Math.random() * 6) + "s";
+        // 🎲 TAMAÑO
+        cat.style.fontSize = "60px";
+
+        // 🎲 VELOCIDAD
+        const duration = 8 + Math.random() * 6;
+        cat.style.animation = `floatCats ${duration}s linear`;
 
         // 💥 CLICK
         cat.addEventListener('click', () => {
@@ -281,7 +287,20 @@
                 cat.remove();
             }, 300);
         });
-    });
+
+        container.appendChild(cat);
+
+        // 🧹 LIMPIEZA (cuando termina animación)
+        setTimeout(() => {
+            cat.remove();
+        }, duration * 1000);
+    }
+
+    // 🔁 GENERAR GATOS CONSTANTEMENTE
+    setInterval(() => {
+        createCat();
+    }, 1500); // cada 1.5 segundos
+
 </script>
 </body>
 </html>
