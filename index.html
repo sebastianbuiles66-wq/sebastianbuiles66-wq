@@ -193,6 +193,23 @@
             filter: hue-rotate(200deg);
         }
 
+        .score {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #1e293b;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 14px;
+            z-index: 2;
+        }
+
+        .cats-bg span {
+            position: absolute;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
     </style>
 </head>
 
@@ -204,6 +221,10 @@
     </div>
 
     <div class="main">
+
+        <div class="score">🐱 Gatos atrapados: 
+            <span id="score">0</span>
+        </div>
 
         <div class="container">
             <h1>¡Hola! 👋 Soy Sebastian Builes</h1>
@@ -260,47 +281,58 @@
     </div>
 <script>
     const container = document.querySelector('.cats-bg');
+    const scoreText = document.getElementById('score');
+    const sound = document.getElementById('popSound');
+
+    let score = 0;
 
     function createCat() {
         const cat = document.createElement('span');
         cat.textContent = "🐱";
 
+        // 🐱 MÁS GRANDE
+        cat.style.fontSize = "90px";
+
         // 🎲 POSICIÓN RANDOM
-        cat.style.position = "absolute";
         cat.style.left = Math.random() * 100 + "%";
-        cat.style.top = "100%"; // empieza abajo
+        cat.style.top = "100%";
 
-        // 🎲 TAMAÑO
-        cat.style.fontSize = "60px";
-
-        // 🎲 VELOCIDAD
-        const duration = 8 + Math.random() * 6;
+        // 🎲 VELOCIDAD MÁS LENTA
+        const duration = 10 + Math.random() * 6;
         cat.style.animation = `floatCats ${duration}s linear`;
 
         // 💥 CLICK
         cat.addEventListener('click', () => {
-            cat.style.transition = "0.3s";
+
+            // 🔊 SONIDO
+            sound.currentTime = 0;
+            sound.play();
+
+            // 🔢 SUMAR PUNTOS
+            score++;
+            scoreText.textContent = score;
+
+            // 💥 EFECTO EXPLOSIÓN (VISIBLE)
+            cat.innerHTML = "💥";
             cat.style.transform = "scale(2)";
-            cat.style.opacity = "0";
+            cat.style.opacity = "1";
 
             setTimeout(() => {
                 cat.remove();
-            }, 300);
+            }, 200);
         });
 
         container.appendChild(cat);
 
-        // 🧹 LIMPIEZA (cuando termina animación)
+        // 🧹 LIMPIEZA AUTOMÁTICA
         setTimeout(() => {
             cat.remove();
         }, duration * 1000);
     }
 
-    // 🔁 GENERAR GATOS CONSTANTEMENTE
-    setInterval(() => {
-        createCat();
-    }, 1500); // cada 1.5 segundos
-
+    // 🧘 MENOS GATOS
+    setInterval(createCat, 3000); // cada 3 segundos
 </script>
+<audio id="popSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
 </body>
 </html>
