@@ -32,6 +32,25 @@
         .container {
             text-align: center;
             margin-top: 80px;
+            padding: 30px;
+
+            /* 🔥 EFECTO GLASS */
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+
+            /* 🔵 BORDE NEÓN */
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            border-radius: 15px;
+
+            /* ✨ SOMBRA SUAVE */
+            box-shadow:
+                0 0 10px rgba(56, 189, 248, 0.2),
+                0 0 30px rgba(14, 165, 233, 0.1);
+
+            /* 📏 TAMAÑO CONTROLADO */
+            max-width: 600px;
+            width: 90%;
+
             animation: fadeUp 1s ease;
         }
 
@@ -301,6 +320,29 @@
             filter: blur(120px);
             opacity: 0.15;
             z-index: 0;
+        }
+
+        .container:hover {
+            box-shadow:
+                0 0 20px rgba(56, 189, 248, 0.4),
+                0 0 50px rgba(14, 165, 233, 0.2);
+        }
+
+        .container {
+            animation: fadeUp 1s ease, borderGlow 3s infinite alternate;
+        }
+
+        @keyframes borderGlow {
+            from {
+                box-shadow:
+                    0 0 10px rgba(56, 189, 248, 0.2),
+                    0 0 30px rgba(14, 165, 233, 0.1);
+            }
+            to {
+                box-shadow:
+                    0 0 20px rgba(56, 189, 248, 0.5),
+                    0 0 60px rgba(14, 165, 233, 0.3);
+            }
         }
     </style>
 </head>
