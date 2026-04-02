@@ -165,8 +165,9 @@
             height: 100%;
             top: 0;
             left: 0;
-            z-index: 0;
+            z-index: 2;
             overflow: hidden;
+            pointer-events: none;
         }
 
         .cats-bg span {
@@ -208,7 +209,9 @@
             position: absolute;
             cursor: pointer;
             transition: transform 0.2s, opacity 0.2s;
+            pointer-events: auto; /* 🔥 SOLO LOS GATOS SON CLICKEABLES */
         }
+
 
     </style>
 </head>
@@ -279,6 +282,7 @@
         </div>
 
     </div>
+    <audio id="popSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
 <script>
     const container = document.querySelector('.cats-bg');
     const scoreText = document.getElementById('score');
@@ -333,6 +337,6 @@
     // 🧘 MENOS GATOS
     setInterval(createCat, 3000); // cada 3 segundos
 </script>
-<audio id="popSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+
 </body>
 </html>
