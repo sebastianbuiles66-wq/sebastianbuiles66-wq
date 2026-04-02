@@ -8,8 +8,17 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #0f172a;
             color: white;
+
+            background: linear-gradient(
+                270deg,
+                #020617,
+                #0f172a,
+                #020617
+            );
+
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
         }
 
         .main {
@@ -273,6 +282,25 @@
                 0 0 40px #0ea5e9;
 
             animation: neonGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #38bdf8 0%, transparent 70%);
+            top: 20%;
+            left: 30%;
+            filter: blur(120px);
+            opacity: 0.15;
+            z-index: 0;
         }
     </style>
 </head>
