@@ -27,8 +27,19 @@
         }
 
         h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+                font-size: 3.5em; /* 🔥 más grande */
+                margin-bottom: 10px;
+
+                color: #38bdf8;
+
+                /* ✨ EFECTO NEÓN */
+                text-shadow:
+                    0 0 5px #38bdf8,
+                    0 0 10px #38bdf8,
+                    0 0 20px #0ea5e9,
+                    0 0 40px #0ea5e9;
+
+                animation: neonGlow 2s ease-in-out infinite alternate;
         }
 
         h2 {
@@ -212,12 +223,62 @@
             pointer-events: auto; /* 🔥 SOLO LOS GATOS SON CLICKEABLES */
         }
 
+        @keyframes neonGlow {
+            from {
+                text-shadow:
+                    0 0 5px #38bdf8,
+                    0 0 10px #38bdf8,
+                    0 0 20px #0ea5e9,
+                    0 0 40px #0ea5e9;
+            }
 
+            to {
+                text-shadow:
+                    0 0 2px #38bdf8,
+                    0 0 5px #38bdf8,
+                    0 0 10px #0ea5e9,
+                    0 0 20px #0ea5e9;
+            }
+        }
+
+        body {
+            cursor: none;
+        }
+
+        .cursor {
+            position: fixed;
+            width: 15px;
+            height: 15px;
+            background: #38bdf8;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999;
+
+            box-shadow:
+                0 0 5px #38bdf8,
+                0 0 10px #38bdf8,
+                0 0 20px #0ea5e9;
+
+            transform: translate(-50%, -50%);
+        }
+
+        .neon-title {
+            font-size: 2em;
+            color: #38bdf8;
+
+            text-shadow:
+                0 0 5px #38bdf8,
+                0 0 10px #38bdf8,
+                0 0 20px #0ea5e9,
+                0 0 40px #0ea5e9;
+
+            animation: neonGlow 2s ease-in-out infinite alternate;
+        }
     </style>
 </head>
 
 <body>
-
+<div class="cursor"></div>
     <!-- 🐱 GATOS -->
     <div class="cats-bg">
 
@@ -247,7 +308,7 @@
         </div>
 
         <div class="projects">
-            <h2>🚀 Proyectos</h2>
+            <h2 class="neon-title">🚀 Proyectos</h2>
 
             <div class="project">
                 <img src="taxi.png" class="project-img">
@@ -336,6 +397,20 @@
 
     // 🧘 MENOS GATOS
     setInterval(createCat, 3000); // cada 3 segundos
+
+    const cursor = document.querySelector('.cursor');
+
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+
+    document.addEventListener('click', () => {
+        cursor.style.transform = "translate(-50%, -50%) scale(1.8)";
+        setTimeout(() => {
+            cursor.style.transform = "translate(-50%, -50%) scale(1)";
+        }, 100);
+    });
 </script>
 
 </body>
