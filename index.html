@@ -1,109 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Portafolio - Sebastián</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+
+            background: linear-gradient(
+                270deg,
+                #020617,
+                #0f172a,
+                #020617
+            );
+
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 80px;
+            padding: 30px;
+
+            /* 🔥 EFECTO GLASS */
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+
+            /* 🔵 BORDE NEÓN */
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            border-radius: 15px;
+
+            /* ✨ SOMBRA SUAVE */
+            box-shadow:
+                0 0 10px rgba(56, 189, 248, 0.2),
+                0 0 30px rgba(14, 165, 233, 0.1);
+
+            /* 📏 TAMAÑO CONTROLADO */
+            max-width: 600px;
+            width: 90%;
+
+            animation: fadeUp 1s ease;
+        }
+
+        h1 {
+                font-size: 5.5em; /* 🔥 más grande */
+                margin-bottom: 10px;
+
+                color: #38bdf8;
+
+                /* ✨ EFECTO NEÓN */
+                text-shadow:
+                    0 0 5px #38bdf8,
+                    0 0 10px #38bdf8,
+                    0 0 20px #0ea5e9,
+                    0 0 40px #0ea5e9;
+
+                animation: neonGlow 2s ease-in-out infinite alternate;
+        }
+
+        h2 {
+            font-weight: normal;
+            color: #38bdf8;
+        }
+
+        .skills {
+            margin: 30px 0;
+        }
+
+        .skills span {
+            background-color: #1e293b;
+            padding: 8px 12px;
+            margin: 10px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .projects {
+            max-width: 600px;
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        .project {
+            background-color: #1e293b;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        .project:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .project:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .project:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .project p {
+            color: #94a3b8;
+        }
+
+        .project a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            background-color: #38bdf8;
+            color: #0f172a;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .project a:hover {
+            background-color: #0ea5e9;
+        }
+
+        .project-img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+
+        .project:hover .project-img {
+            transform: scale(1.03);
+        }
+
+        .about {
+            max-width: 600px;
+            margin: 80px auto;
+            text-align: center;
+        }
+
+        .about p {
+            color: #94a3b8;
+            margin-top: 10px;
+        }
+
+        .buttons {
+            margin-top: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 8px 14px;
+            background-color: #38bdf8;
+            color: #0f172a;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0ea5e9;
+        }
+
+        /* ANIMACIÓN GENERAL */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 🐱 GATOS FONDO */
+        .cats-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .cats-bg span {
+            position: absolute;
+            font-size: 60px;
+            animation: floatCats 10s linear infinite;
+            cursor: pointer;
+            transition: transform 0.2s, filter 0.2s;
+        }
+
+        @keyframes floatCats {
+            0% { top: 100%; opacity: 0; }
+            50% { opacity: 1; }
+            100% { top: -10%; opacity: 0; }
+        }
+
+        .cats-bg span:hover {
+            transform: scale(1.5);
+            filter: hue-rotate(90deg);
+        }
+
+        .cats-bg span:active {
+            transform: scale(2);
+            filter: hue-rotate(200deg);
+        }
+
+        .score {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #1e293b;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 14px;
+            z-index: 2;
+        }
+
+        .cats-bg span {
+            position: absolute;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+            pointer-events: auto; /* 🔥 SOLO LOS GATOS SON CLICKEABLES */
+        }
+
+        @keyframes neonGlow {
+            from {
+                text-shadow:
+                    0 0 5px #38bdf8,
+                    0 0 10px #38bdf8,
+                    0 0 20px #0ea5e9,
+                    0 0 40px #0ea5e9;
+            }
+
+            to {
+                text-shadow:
+                    0 0 2px #38bdf8,
+                    0 0 5px #38bdf8,
+                    0 0 10px #0ea5e9,
+                    0 0 20px #0ea5e9;
+            }
+        }
+
+        body {
+            cursor: none;
+        }
+
+        .cursor {
+            position: fixed;
+            width: 15px;
+            height: 15px;
+            background: #38bdf8;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999;
+
+            box-shadow:
+                0 0 5px #38bdf8,
+                0 0 10px #38bdf8,
+                0 0 20px #0ea5e9;
+
+            transform: translate(-50%, -50%);
+        }
+
+        .neon-title {
+            font-size: 2em;
+            color: #38bdf8;
+
+            text-shadow:
+                0 0 5px #38bdf8,
+                0 0 10px #38bdf8,
+                0 0 20px #0ea5e9,
+                0 0 40px #0ea5e9;
+
+            animation: neonGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #38bdf8 0%, transparent 70%);
+            top: 20%;
+            left: 30%;
+            filter: blur(120px);
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .container:hover {
+            box-shadow:
+                0 0 20px rgba(56, 189, 248, 0.4),
+                0 0 50px rgba(14, 165, 233, 0.2);
+        }
+
+        .container {
+            animation: fadeUp 1s ease, borderGlow 3s infinite alternate;
+        }
+
+        @keyframes borderGlow {
+            from {
+                box-shadow:
+                    0 0 10px rgba(56, 189, 248, 0.2),
+                    0 0 30px rgba(14, 165, 233, 0.1);
+            }
+            to {
+                box-shadow:
+                    0 0 20px rgba(56, 189, 248, 0.5),
+                    0 0 60px rgba(14, 165, 233, 0.3);
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="cursor"></div>
+    <!-- 🐱 GATOS -->
+    <div class="cats-bg">
+
+    </div>
+
+    <div class="main">
+
+        <div class="score">🐱 Gatos atrapados: 
+            <span id="score">0</span>
+        </div>
+
+        <div class="container">
+            <h1>Sebastian Builes</h1>
+
+            <h2>Unity Game Developer | C# Programmer</h2>
+
+            <div class="skills">
+                <span>Unity</span>
+                <span>C#</span>
+                <span>Gameplay Programming</span>
+                <span>Git/GitHub</span>
+            </div>
+
+        </div>
+
+        <div class="projects">
+            <h2 class="neon-title"> Proyectos</h2>
+
+            <div class="project">
+                <img src="taxi.png" class="project-img">
+                <h3>Taxi: Night Ride</h3>
+                <p>Juego donde transportas pasajeros mientras escapas de una criatura en la oscuridad.</p>
+                <p><strong>Rol:</strong> Programador de gameplay y Mecanicas</p>
+                <a href="https://kairosnova.itch.io/taxi-night-ride" target="_blank">Jugar en itch.io</a>
+            </div>
+
+            <div class="project">
+                <img src="Hidden.jpg" class="project-img">
+                <h3>Hidden Legacy</h3>
+                <p>Ninja aventurero que busca un tesoro oculto en el centro de un misterioso laberinto.</p>
+                <p><strong>Rol:</strong> Programador de movimiento</p>
+                <a href="https://andreagranados.itch.io/hidden-legacy" target="_blank">Jugar en itch.io</a>
+            </div>
+
+        </div>
+
+        <div class="about">
+            <h2>Sobre mí</h2>
+
+            <p>
+                Desarrollador de videojuegos en Unity enfocado en gameplay.
+                Me gusta programar y crear mecánicas de juego, con especial interés en el testing y la mejora de la experiencia del jugador.
+            </p>
+
+            <div class="buttons">
+                <a href="https://www.linkedin.com/in/sebastian-builes-ortiz-videojuegos/" target="_blank" class="btn">LinkedIn</a>
+                <a href="cv.pdf" download class="btn">Descargar CV</a>
+            </div>
+        </div>
+
+    </div>
+    <audio id="popSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
 <script>
-// =======================
-// 🎮 SLIDER (hover automático)
-// =======================
-const track = document.querySelector('.slider-track');
-const nextBtn = document.querySelector('.next');
-const prevBtn = document.querySelector('.prev');
+    const container = document.querySelector('.cats-bg');
+    const scoreText = document.getElementById('score');
+    const sound = document.getElementById('popSound');
 
-let index = 0;
-let interval = null;
+    let score = 0;
 
-const total = document.querySelectorAll('.project').length;
+    function createCat() {
+        const cat = document.createElement('span');
+        cat.textContent = "🐱";
 
-function updateSlider() {
-    track.style.transform = `translateX(-${index * 100}%)`;
-}
+        // 🐱 MÁS GRANDE
+        cat.style.fontSize = "90px";
 
-function moveRight() {
-    if (index < total - 1) {
-        index++;
-        updateSlider();
+        // 🎲 POSICIÓN RANDOM
+        cat.style.left = Math.random() * 100 + "%";
+        cat.style.top = "100%";
+
+        // 🎲 VELOCIDAD MÁS LENTA
+        const duration = 10 + Math.random() * 6;
+        cat.style.animation = `floatCats ${duration}s linear`;
+
+        // 💥 CLICK
+        cat.addEventListener('click', () => {
+
+            // 🔊 SONIDO
+            sound.currentTime = 0;
+            sound.play();
+
+            // 🔢 SUMAR PUNTOS
+            score++;
+            scoreText.textContent = score;
+
+            // 💥 EFECTO EXPLOSIÓN (VISIBLE)
+            cat.innerHTML = "💥";
+            cat.style.transform = "scale(2)";
+            cat.style.opacity = "1";
+
+            setTimeout(() => {
+                cat.remove();
+            }, 200);
+        });
+
+        container.appendChild(cat);
+
+        // 🧹 LIMPIEZA AUTOMÁTICA
+        setTimeout(() => {
+            cat.remove();
+        }, duration * 1000);
     }
-}
 
-function moveLeft() {
-    if (index > 0) {
-        index--;
-        updateSlider();
-    }
-}
+    // 🧘 MENOS GATOS
+    setInterval(createCat, 7000); // cada 3 segundos
 
-// Hover derecha
-nextBtn.addEventListener('mouseenter', () => {
-    interval = setInterval(moveRight, 800);
-});
+    const cursor = document.querySelector('.cursor');
 
-nextBtn.addEventListener('mouseleave', () => {
-    clearInterval(interval);
-});
-
-// Hover izquierda
-prevBtn.addEventListener('mouseenter', () => {
-    interval = setInterval(moveLeft, 800);
-});
-
-prevBtn.addEventListener('mouseleave', () => {
-    clearInterval(interval);
-});
-
-
-// =======================
-// 🐱 GATOS
-// =======================
-const container = document.querySelector('.cats-bg');
-const scoreText = document.getElementById('score');
-
-let score = 0;
-
-function createCat() {
-    if (!container) return;
-
-    const cat = document.createElement('span');
-    cat.textContent = "🐱";
-
-    cat.style.position = "absolute";
-    cat.style.fontSize = "80px";
-    cat.style.left = Math.random() * 100 + "%";
-    cat.style.top = "100%";
-
-    const duration = 10 + Math.random() * 6;
-    cat.style.animation = `floatCats ${duration}s linear`;
-
-    cat.addEventListener('click', () => {
-        score++;
-        if (scoreText) scoreText.textContent = score;
-
-        cat.textContent = "💥";
-        cat.style.transform = "scale(2)";
-
-        setTimeout(() => cat.remove(), 200);
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
     });
 
-    container.appendChild(cat);
-
-    setTimeout(() => cat.remove(), duration * 1000);
-}
-
-setInterval(createCat, 5000);
-
-
-// =======================
-// 🖱️ CURSOR PERSONALIZADO
-// =======================
-const cursor = document.querySelector('.cursor');
-
-document.addEventListener('mousemove', (e) => {
-    if (!cursor) return;
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-});
-
-document.addEventListener('click', () => {
-    if (!cursor) return;
-    cursor.style.transform = "translate(-50%, -50%) scale(1.8)";
-    setTimeout(() => {
-        cursor.style.transform = "translate(-50%, -50%) scale(1)";
-    }, 100);
-});
+    document.addEventListener('click', () => {
+        cursor.style.transform = "translate(-50%, -50%) scale(1.8)";
+        setTimeout(() => {
+            cursor.style.transform = "translate(-50%, -50%) scale(1)";
+        }, 100);
+    });
 </script>
+
+</body>
+</html>
+
+
