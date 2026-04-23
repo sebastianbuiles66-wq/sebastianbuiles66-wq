@@ -338,6 +338,43 @@
                     0 0 60px rgba(14, 165, 233, 0.3);
             }
         }
+
+        /* 🎮 SLIDER */
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 40px auto;
+            overflow: hidden;
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slider .project {
+            min-width: 100%;
+            margin-top: 0; /* evita separación vertical */
+        }
+
+        /* Flechas */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(56, 189, 248, 0.2);
+            border: none;
+            color: #38bdf8;
+            font-size: 20px;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 5;
+        }
+
+        .prev { left: -15px; }
+        .next { right: -15px; }
     </style>
 </head>
 
@@ -371,22 +408,31 @@
         <div class="projects">
             <h2 class="neon-title"> Proyectos</h2>
 
-            <div class="project">
-                <img src="taxi.png" class="project-img">
-                <h3>Taxi: Night Ride</h3>
-                <p>Juego donde transportas pasajeros mientras escapas de una criatura en la oscuridad.</p>
-                <p><strong>Rol:</strong> Programador de gameplay y Mecanicas</p>
-                <a href="https://kairosnova.itch.io/taxi-night-ride" target="_blank">Jugar en itch.io</a>
-            </div>
+            <div class="slider">
+                <button class="prev">◀</button>
 
-            <div class="project">
-                <img src="Hidden.jpg" class="project-img">
-                <h3>Hidden Legacy</h3>
-                <p>Ninja aventurero que busca un tesoro oculto en el centro de un misterioso laberinto.</p>
-                <p><strong>Rol:</strong> Programador de movimiento</p>
-                <a href="https://andreagranados.itch.io/hidden-legacy" target="_blank">Jugar en itch.io</a>
-            </div>
+                <div class="slider-track">
 
+                    <div class="project">
+                        <img src="taxi.png" class="project-img">
+                        <h3>Taxi: Night Ride</h3>
+                        <p>Juego donde transportas pasajeros mientras escapas de una criatura en la oscuridad.</p>
+                        <p><strong>Rol:</strong> Programador de gameplay y Mecanicas</p>
+                        <a href="https://kairosnova.itch.io/taxi-night-ride" target="_blank">Jugar en itch.io</a>
+                    </div>
+
+                    <div class="project">
+                        <img src="Hidden.jpg" class="project-img">
+                        <h3>Hidden Legacy</h3>
+                        <p>Ninja aventurero que busca un tesoro oculto en el centro de un misterioso laberinto.</p>
+                        <p><strong>Rol:</strong> Programador de movimiento</p>
+                        <a href="https://andreagranados.itch.io/hidden-legacy" target="_blank">Jugar en itch.io</a>
+                    </div>
+
+                </div>
+
+                <button class="next">▶</button>
+            </div>
         </div>
 
         <div class="about">
@@ -471,6 +517,54 @@
         setTimeout(() => {
             cursor.style.transform = "translate(-50%, -50%) scale(1)";
         }, 100);
+    });
+
+    // =======================
+    // 🎮 SLIDER (hover)
+    // =======================
+    const track = document.querySelector('.slider-track');
+    const nextBtn = document.querySelector('.next');
+    const prevBtn = document.querySelector('.prev');
+
+    let sliderIndex = 0;
+    let sliderInterval = null;
+
+    const totalSlides = document.querySelectorAll('.slider .project').length;
+
+    function updateSlider() {
+        track.style.transform = `translateX(-${sliderIndex * 100}%)`;
+    }
+
+    function moveRight() {
+        if (sliderIndex < totalSlides - 1) {
+            sliderIndex++;
+            updateSlider();
+        }
+    }
+
+    function moveLeft() {
+        if (sliderIndex > 0) {
+            sliderIndex--;
+            updateSlider();
+        }
+    }
+
+    // Hover derecha
+    nextBtn.addEventListener('mouseenter', () => {
+        sliderInterval = setInterval(moveRight, 700);
+    });
+
+    nextBtn.addEventListener('mouseleave', () => {
+        clearInterval(sliderInterval);
+    });
+
+    // Hover izquierda
+    prevBtn.addEventListener('mouseenter', () => {
+        sliderInterval = setInterval(moveLeft, 700);
+    });
+
+    prevBtn.addEventListener('mouseleave', () => {
+        clearInterval(sliderInterval);
     });
 </script>
 
