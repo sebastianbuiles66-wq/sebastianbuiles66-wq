@@ -554,7 +554,7 @@
     // Hover derecha
     nextBtn.addEventListener('mouseenter', () => {
         clearInterval(sliderInterval);
-        sliderInterval = setInterval(moveRight, 250);
+        sliderInterval = setInterval(moveRight, 180);
     });
 
     nextBtn.addEventListener('mouseleave', () => {
@@ -564,7 +564,7 @@
     // Hover izquierda
     prevBtn.addEventListener('mouseenter', () => {
         clearInterval(sliderInterval);
-        sliderInterval = setInterval(moveLeft, 250);
+        sliderInterval = setInterval(moveLeft, 180);
     });
 
     prevBtn.addEventListener('mouseleave', () => {
