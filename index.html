@@ -193,32 +193,47 @@ const nextBtn = document.querySelector('.next');
 const prevBtn = document.querySelector('.prev');
 
 let index = 0;
+let interval = null;
 
-nextBtn.addEventListener('click', () => {
-    const total = document.querySelectorAll('.project').length;
-    if (index < total - 1) {
-        index++;
-        updateSlider();
-    }
-});
+const total = document.querySelectorAll('.project').length;
 
-prevBtn.addEventListener('click', () => {
-    if (index > 0) {
-        index--;
-        updateSlider();
-    }
-});
-
+// 👉 función para mover
 function updateSlider() {
     track.style.transform = `translateX(-${index * 100}%)`;
 }
 
-// 🖱️ CURSOR
-const cursor = document.querySelector('.cursor');
+// 👉 mover derecha
+function moveRight() {
+    if (index < total - 1) {
+        index++;
+        updateSlider();
+    }
+}
 
-document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
+// 👉 mover izquierda
+function moveLeft() {
+    if (index > 0) {
+        index--;
+        updateSlider();
+    }
+}
+
+// 🚀 HOVER DERECHA
+nextBtn.addEventListener('mouseenter', () => {
+    interval = setInterval(moveRight, 800); // velocidad
+});
+
+nextBtn.addEventListener('mouseleave', () => {
+    clearInterval(interval);
+});
+
+// 🚀 HOVER IZQUIERDA
+prevBtn.addEventListener('mouseenter', () => {
+    interval = setInterval(moveLeft, 800);
+});
+
+prevBtn.addEventListener('mouseleave', () => {
+    clearInterval(interval);
 });
 </script>
 
