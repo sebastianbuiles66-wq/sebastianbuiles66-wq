@@ -418,6 +418,7 @@
                     <div class="project">
                         <img src="taxi.png" class="project-img">
                         <h3>Taxi: Night Ride</h3>
+                        <p>Juego donde transportas pasajeros mientras escapas de una criatura en la oscuridad.</p>
                         <p><strong>Rol:</strong></p>
                         <ul>
                             <li>Movimiento del taxi</li>
@@ -425,7 +426,6 @@
                             <li>Sistema de iluminación dinámica</li>
                             <li>Recolección de elementos</li>
                         </ul>    
-                        <p><strong>Rol:</strong> Implementé el sistema de movimiento del taxi, integré el comportamiento del enemigo, desarrollé el sistema de iluminación dinámica según eventos y la recolección de elementos.</p>
                         <a href="https://kairosnova.itch.io/taxi-night-ride" target="_blank">Jugar en itch.io</a>
                     </div>
 
@@ -565,7 +565,7 @@
     // Hover derecha
     nextBtn.addEventListener('mouseenter', () => {
         clearInterval(sliderInterval);
-        sliderInterval = setInterval(moveRight, 180);
+        sliderInterval = setInterval(moveRight, 120);
     });
 
     nextBtn.addEventListener('mouseleave', () => {
@@ -575,7 +575,7 @@
     // Hover izquierda
     prevBtn.addEventListener('mouseenter', () => {
         clearInterval(sliderInterval);
-        sliderInterval = setInterval(moveLeft, 180);
+        sliderInterval = setInterval(moveLeft, 120);
     });
 
     prevBtn.addEventListener('mouseleave', () => {
