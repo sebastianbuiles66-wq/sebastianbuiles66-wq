@@ -351,9 +351,12 @@
         .slider-track {
             display: flex;
             transition: transform 0.5s ease;
+            width: 300%;
         }
 
         .slider .project {
+            opacity: 1 !important;
+            animation: none !important;
             min-width: 100%;
             margin-top: 0; /* evita separación vertical */
         }
@@ -520,7 +523,7 @@
     });
 
     // =======================
-    // 🎮 SLIDER (hover)
+    // 🎮 SLIDER (hover suave)
     // =======================
     const track = document.querySelector('.slider-track');
     const nextBtn = document.querySelector('.next');
@@ -538,20 +541,21 @@
     function moveRight() {
         if (sliderIndex < totalSlides - 1) {
             sliderIndex++;
-            updateSlider();
         }
+        updateSlider();
     }
 
     function moveLeft() {
         if (sliderIndex > 0) {
             sliderIndex--;
-            updateSlider();
         }
+        updateSlider();
     }
 
     // Hover derecha
     nextBtn.addEventListener('mouseenter', () => {
-        sliderInterval = setInterval(moveRight, 700);
+        clearInterval(sliderInterval);
+        sliderInterval = setInterval(moveRight, 900);
     });
 
     nextBtn.addEventListener('mouseleave', () => {
@@ -560,7 +564,8 @@
 
     // Hover izquierda
     prevBtn.addEventListener('mouseenter', () => {
-        sliderInterval = setInterval(moveLeft, 700);
+        clearInterval(sliderInterval);
+        sliderInterval = setInterval(moveLeft, 900);
     });
 
     prevBtn.addEventListener('mouseleave', () => {
